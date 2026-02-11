@@ -9,6 +9,10 @@
             <class name="ui.tests.UI_TC01_RegisterUserTest"/>
             <class name="ui.tests.UI_TC04_LogoutUserTest"/>
             <class name="ui.tests.UI_TC05_RegisterExistingEmailTest"/>
+            <class name="ui.tests.UI_TC09_SearchProductTest"/>
+            <class name="ui.tests.UI_TC12_AddProductsTest"/>
+            <class name="ui.tests.UI_TC16_PlaceOrderTest"/>
+
         </classes>
     </test>
 
