@@ -1,0 +1,20 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Parallel E2E Suite" parallel="classes" thread-count="4">
+    <listeners>
+        <listener class-name="core.listeners.AllureTestListener"/>
+    </listeners>
+
+    <test name="UI Tests">
+        <classes>
+            <class name="ui.tests.UI_TC01_RegisterUserTest"/>
+            <class name="ui.tests.UI_TC04_LogoutUserTest"/>
+            <class name="ui.tests.UI_TC05_RegisterExistingEmailTest"/>
+        </classes>
+    </test>
+
+    <test name="API Tests">
+        <classes>
+
+        </classes>
+    </test>
+</suite>
