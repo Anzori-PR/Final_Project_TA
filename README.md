@@ -76,7 +76,7 @@ It covers both *UI (Frontend)* and *API (Backend)* automation for the Automation
 | **Dachi**| TC03 | Login User with incorrect email and password |
 |          | TC06 | Contact Us Form |
 | **Leqso**| TC10  | Verify Subscription in home page |
-           | TC18  | View Category Products |
+|          | TC18  | View Category Products |
 
 ---
 
@@ -93,7 +93,7 @@ It covers both *UI (Frontend)* and *API (Backend)* automation for the Automation
 | *Dachi* | API TC12 | DELETE Method To Delete User Account |
 |           | API TC09 | DELETE To Verify Login |
 | *Leqso* | API TC08 | POST To Verify Login without email parameter |
-          | API TC13 | PUT METHOD To Update User Account |
+|         | API TC13 | PUT METHOD To Update User Account |
 
 ---
 
