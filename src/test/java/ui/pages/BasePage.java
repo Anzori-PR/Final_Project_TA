@@ -10,15 +10,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 
 import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.support.PageFactory;
 
 
 public abstract class BasePage {
     protected final WebDriver driver;
     protected final WaitUtils wait;
-
     protected BasePage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WaitUtils(ConfigReader.getInt("timeoutSeconds"));
+        PageFactory.initElements(driver, this);
     }
 
     protected void safeClick(By locator) {

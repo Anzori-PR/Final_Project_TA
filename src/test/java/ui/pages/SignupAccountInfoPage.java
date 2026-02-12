@@ -54,10 +54,10 @@ public class SignupAccountInfoPage extends BasePage {
     }
 
     @Step("Fill account information and address details")
-    public void fillAccountAndAddressDetails() {
-        wait.clickable(titleMrRadio).click();
+    public void fillAccountAndAddressDetails(String password) {
+        safeClick(titleMrRadio);
 
-        wait.visible(passwordInput).sendKeys("Test@12345");
+        wait.visible(passwordInput).sendKeys(password);
 
         new Select(wait.visible(daysSelect)).selectByValue("10");
         new Select(wait.visible(monthsSelect)).selectByValue("5");

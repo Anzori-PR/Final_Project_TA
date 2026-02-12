@@ -3,7 +3,7 @@ package core.config;
 import java.io.InputStream;
 import java.util.Properties;
 
-public final class ConfigReader {
+public final class  ConfigReader {
     private static final Properties props = new Properties();
 
     static {
