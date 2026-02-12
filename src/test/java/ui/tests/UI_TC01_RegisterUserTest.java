@@ -14,7 +14,6 @@ public class UI_TC01_RegisterUserTest extends BaseUiTest {
 
     @Test(description = "TC01: Register User")
     public void registerUser() {
-        String password = "Test@12345";
 
 
         // 1-3 Launch + Navigate + Verify home
@@ -50,7 +49,7 @@ public class UI_TC01_RegisterUserTest extends BaseUiTest {
 
 
         // 9-12 Fill details
-        accountInfo.fillAccountAndAddressDetails(password);
+        accountInfo.fillAccountAndAddressDetails();
 
         // 13 Click Create Account
         accountInfo.clickCreateAccount();

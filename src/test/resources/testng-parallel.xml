@@ -1,24 +1,36 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="Parallel E2E Suite" parallel="classes" thread-count="4">
+
     <listeners>
         <listener class-name="core.listeners.AllureTestListener"/>
     </listeners>
 
+    <!-- UI Tests -->
     <test name="UI Tests">
         <classes>
             <class name="ui.tests.UI_TC01_RegisterUserTest"/>
+            <class name="ui.tests.UI_TC03_LoginIncorrectTest"/>
             <class name="ui.tests.UI_TC04_LogoutUserTest"/>
             <class name="ui.tests.UI_TC05_RegisterExistingEmailTest"/>
+            <class name="ui.tests.UI_TC06_ContactUsTest"/>
             <class name="ui.tests.UI_TC09_SearchProductTest"/>
             <class name="ui.tests.UI_TC12_AddProductsTest"/>
             <class name="ui.tests.UI_TC16_PlaceOrderTest"/>
-
         </classes>
     </test>
 
+    <!-- API Tests -->
     <test name="API Tests">
         <classes>
-
+            <class name="api.test.API_TC01_GetAllProductsTest"/>
+            <class name="api.test.API_TC02_PostToProductsListTest"/>
+            <class name="api.test.API_TC03_GetAllBrandsListTest"/>
+            <class name="api.test.API_TC05_SearchProductTest"/>
+            <class name="api.test.API_TC09_DeleteVerifyLoginTest"/>
+            <class name="api.test.API_TC11_CreateUserAccountTest"/>
+            <class name="api.test.API_TC12_DeleteAccountTest"/>
+            <class name="api.test.API_TC14_GetUserDetailTest"/>
         </classes>
     </test>
+
 </suite>

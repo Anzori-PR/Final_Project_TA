@@ -37,7 +37,7 @@ public class UI_TC16_PlaceOrderTest extends BaseUiTest {
         // --- PRE-REQUISITE: Register User ---
         headerBar.clickLoginButton();
         loginPage.signup(username, uniqueEmail);
-        signupPage.fillAccountAndAddressDetails(password);
+        signupPage.fillAccountAndAddressDetails();
         signupPage.clickCreateAccount();
 
 
