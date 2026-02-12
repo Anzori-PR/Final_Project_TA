@@ -1,4 +1,4 @@
-package ui.tests;
+package api.test;
 
 import io.qameta.allure.*;
 import io.restassured.RestAssured;
