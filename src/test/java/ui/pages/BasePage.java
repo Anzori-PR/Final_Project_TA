@@ -108,5 +108,15 @@ public abstract class BasePage {
         }
     }
 
+    public void handleGoogleVignette() {
+        try {
+            if (driver.getCurrentUrl().contains("google_vignette")) {
+                driver.navigate().refresh();
+                prepareForAction(); // Remove other banners after refresh
+            }
+        } catch (Exception e) {
+            System.out.println("Vignette handling failed: " + e.getMessage());
+        }
+    }
 }
 

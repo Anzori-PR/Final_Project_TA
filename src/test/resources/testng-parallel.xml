@@ -16,6 +16,8 @@
             <class name="ui.tests.UI_TC09_SearchProductTest"/>
             <class name="ui.tests.UI_TC12_AddProductsTest"/>
             <class name="ui.tests.UI_TC16_PlaceOrderTest"/>
+            <class name="ui.tests.UI_TC18_ViewCategoryProductsTest"/>
+
         </classes>
     </test>
 
