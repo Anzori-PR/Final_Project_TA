@@ -1,8 +1,11 @@
 package ui.pages;
 
+import core.driver.DriverFactory;
+import core.utils.WaitUtils;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class HomePage extends BasePage {
 
@@ -15,11 +18,9 @@ public class HomePage extends BasePage {
 
     @Step("Verify home page is visible")
     public boolean isHomeVisible() {
-        try {
-            return wait.visible(homeSlider).isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+        WebElement sliderElement = DriverFactory.getDriver().findElement(homeSlider);
+        return WaitUtils.waitForElementVisible(DriverFactory.getDriver(), sliderElement, 10).isDisplayed();
+
     }
 
     @Step("Click Signup/Login")
