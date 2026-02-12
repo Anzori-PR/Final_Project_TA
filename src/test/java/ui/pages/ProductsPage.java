@@ -34,8 +34,10 @@ public class ProductsPage extends BasePage {
     @FindBy(xpath = "(//a[@data-product-id])[3]") // Index 3 is often the 2nd product's overlay button
     private WebElement secondProductAddToCart;
 
-    @FindBy(xpath = "//button[text()='Continue Shopping']")
+
+    @FindBy(xpath = "//button[@data-dismiss='modal' and normalize-space()='Continue Shopping']")
     private WebElement continueShoppingButton;
+
 
     @FindBy(xpath = "//u[text()='View Cart']")
     private WebElement viewCartLink;
@@ -91,9 +93,19 @@ public class ProductsPage extends BasePage {
         }
     }
 
+    @Step("Click 'Continue Shopping' button in modal")
     public void clickContinueShopping() {
-        WaitUtils.waitForElementClickable(driver, continueShoppingButton, 10).click();
+        WebElement modal = driver.findElement(By.id("cartModal"));
+        WaitUtils.waitForElementVisible(driver, modal, 10);
+
+        try {
+            WaitUtils.waitForElementClickable(driver, continueShoppingButton, 10).click();
+        } catch (org.openqa.selenium.ElementClickInterceptedException e) {
+            core.utils.WaitUtils.waitForAdToDisappear(driver);
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", continueShoppingButton);
+        }
     }
+
 
     public void addSecondProductToCart() {
         Actions actions = new Actions(driver);

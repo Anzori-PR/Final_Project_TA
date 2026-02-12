@@ -37,12 +37,29 @@ public class UI_TC16_PlaceOrderTest extends BaseUiTest {
         // --- PRE-REQUISITE: Register User ---
         headerBar.clickLoginButton();
         loginPage.signup(username, uniqueEmail);
-        signupPage.fillAccountAndAddressDetails();
+        signupPage.fillAccountAndAddressDetails(password);
         signupPage.clickCreateAccount();
+
+
+        // ✅ Strong wait: URL or header text
+        WaitUtils.waitForUrlContains(DriverFactory.getDriver(), "account_created", 15);
+
+        Assert.assertTrue(DriverFactory.getDriver().getCurrentUrl().contains("account_created"),
+                "Did not navigate to account_created page. Current URL: " + DriverFactory.getDriver().getCurrentUrl());
+
+
+        // Sometimes Continue is blocked or doesn't redirect. Go home and verify session.
+        DriverFactory.getDriver().get("https://automationexercise.com/");
+
+        Assert.assertTrue(headerBar.isLoggedInAsVisible(),
+                "After account creation, user is not logged in (Logged in as not visible) even on home page.");
 
         // FIX: Handle "Account Created" page before logging out
         Assert.assertTrue(accountCreatedPage.isAccountCreatedVisible(), "Account Created page not visible.");
         accountCreatedPage.clickContinue();
+
+        // ✅ Wait for home/header to be ready and logged-in state visible
+        Assert.assertTrue(headerBar.isLoggedInAsVisible(), "After Continue, user is not logged in (Logged in as not visible).");
 
         // NOW we are on the home page as a logged-in user, so we can logout
         headerBar.clickLogout();

@@ -13,7 +13,7 @@ public class AccountCreatedPage extends BasePage {
     }
 
 
-    private final By continueBtn = By.cssSelector("a[data-qa='continue-button'], a.btn.btn-primary");
+    private final By continueBtn = By.cssSelector("a[data-qa='continue-button']");
 
     public AccountCreatedPage(WebDriver driver) {
         super(driver);
@@ -27,13 +27,14 @@ public class AccountCreatedPage extends BasePage {
     }
 
 
-    @Step("Click 'Continue' button")
+    @Step("Click Continue on Account Created page")
     public void clickContinue() {
         try {
-            wait.clickable(continueBtn).click();
-        } catch (org.openqa.selenium.ElementClickInterceptedException e) {
-            removeAdsIfPresent();
-            wait.clickable(continueBtn).click();
+            safeClick(continueBtn);
+        } catch (Exception e) {
+            blockAds();
+            ((org.openqa.selenium.JavascriptExecutor) driver)
+                    .executeScript("arguments[0].click();", wait.visible(continueBtn));
         }
     }
 

@@ -11,9 +11,11 @@ import org.openqa.selenium.support.FindBy;
 public class HeaderBar extends BasePage {
 
     private final By loggedInAs = By.xpath("//*[contains(text(),'Logged in as')]");
-    private final By logoutBtn = By.cssSelector("a[href='/logout']");
-    private final By deleteAccountBtn = By.cssSelector("a[href='/delete_account']");
-    private final By loggedInAsLocator = By.xpath("//li[contains(., 'Logged in as')]");
+
+    private final By logoutBtn = By.xpath("//a[normalize-space()='Logout']");
+
+    private final By deleteAccountBtn = By.xpath("//a[normalize-space()='Delete Account']");
+
     @FindBy(xpath = "//a[@href='/products']")
     private WebElement productsButton;
     @FindBy(xpath = "//a[@href='/login']")
@@ -26,22 +28,26 @@ public class HeaderBar extends BasePage {
 
     @Step("Click Signup / Login button")
     public void clickLoginButton() {
-        WaitUtils.waitForElementClickable(driver, loginButton, 10).click();
+        safeClick(By.xpath("//a[@href='/login']"));
     }
+
     @Step("Verify 'Logged in as' is visible")
     public boolean isLoggedInAsVisible() {
         try {
-            // First, wait for the redirect away from the login page
-            WaitUtils.waitForUrlContains(driver, "automationexercise.com", 10);
+            blockAds();
 
-            // Then, wait for the specific 'Logged in as' element to appear
-            WebElement element = WaitUtils.waitForElementVisible(driver, driver.findElement(loggedInAsLocator), 15);
-            return element.isDisplayed();
+            // Best locator for this site header
+            By loggedInAsText = By.xpath("//a[contains(normalize-space(),'Logged in as')]");
+
+            // Wait for it properly (By, not WebElement)
+            WebElement el = wait.visible(loggedInAsText);   // uses your WaitUtils wrapper inside BasePage
+            return el.isDisplayed();
         } catch (Exception e) {
-            System.out.println("Failure! Current URL is: " + driver.getCurrentUrl());
+            System.out.println("Logged in as not visible. URL: " + driver.getCurrentUrl());
             return false;
         }
     }
+
 
     @Step("Click Logout")
     public void clickLogout() {
@@ -70,5 +76,6 @@ public class HeaderBar extends BasePage {
             driver.navigate().to("https://automationexercise.com/products");
         }
     }
+
 
 }
