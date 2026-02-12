@@ -32,7 +32,7 @@ It covers both *UI (Frontend)* and *API (Backend)* automation for the Automation
 - Test data utilities for dynamic data (e.g., unique email generation).  
 
 ---
-
+```
 ## 📂 Project Structure
 ├── .allure
 ├── .mvn
@@ -56,7 +56,7 @@ It covers both *UI (Frontend)* and *API (Backend)* automation for the Automation
 ├── target
 ├── pom.xml
 └── mvnw / mvnw.cmd
-
+```
 ---
 
 ## 👥 Group Members & Test Case Ownership
