@@ -76,6 +76,10 @@ public class HeaderBar extends BasePage {
             driver.navigate().to("https://automationexercise.com/products");
         }
     }
+    @Step("Click Contact Us button")
+    public void clickContactUs() {
+        WaitUtils.waitForElementClickable(driver, contactUsButton, 10).click();
+    }
 
 
 }

@@ -19,6 +19,9 @@ public class LoginPage extends BasePage {
     private final By signupEmailInput = By.cssSelector("input[data-qa='signup-email']");
     private final By signupBtn = By.cssSelector("button[data-qa='signup-button']");
 
+    private final By loginHeader = By.xpath("//h2[contains(text(), 'Login to your account')]");
+    private final By errorMessage = By.xpath("//p[contains(text(), 'incorrect')]");
+
     public LoginPage(WebDriver driver) {
         super(driver);
     }
@@ -59,4 +62,21 @@ public class LoginPage extends BasePage {
             return false;
         }
     }
+
+    @Step("Verify 'Login to your account' is visible")
+    public boolean isLoginHeaderVisible() {
+        return WaitUtils.waitForElementVisible(driver,
+                driver.findElement(loginHeader), 10).isDisplayed();
+    }
+
+    @Step("Verify error 'Your email or password is incorrect!' is visible")
+    public boolean isErrorMessageVisible() {
+        try {
+            return WaitUtils.waitForElementVisible(driver,
+                    driver.findElement(errorMessage), 10).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 }
