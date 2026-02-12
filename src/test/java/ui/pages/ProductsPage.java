@@ -100,7 +100,17 @@ public class ProductsPage extends BasePage {
         // Requirement 7: Hover over second product
         WebElement secondProduct = driver.findElement(By.xpath("(//div[@class='single-products'])[2]"));
         actions.moveToElement(secondProduct).perform();
-        WaitUtils.waitForElementClickable(driver, secondProductAddToCart, 10).click();
+
+        // Wait for the overlay button to be potentially clickable
+        WaitUtils.waitForElementVisible(driver, secondProductAddToCart, 10);
+
+        try {
+            // Attempt standard click
+            secondProductAddToCart.click();
+        } catch (Exception e) {
+            // FALLBACK: Use JavaScript click if an ad intercepts the UI
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", secondProductAddToCart);
+        }
     }
 
     @Step("Click 'View Cart' link in modal")
